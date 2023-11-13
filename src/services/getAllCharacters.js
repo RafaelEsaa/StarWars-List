@@ -1,5 +1,6 @@
 import { StarWarsClient } from './apiConfig'
 import useAxios from "axios-hooks";
+import { urlApiBase } from "../helpers/contanst";
 
 export const getAllCharacters = async () => {
     try {
@@ -11,14 +12,13 @@ export const getAllCharacters = async () => {
 }
 
 export const GetAllCharactersAxios = ({pagination, filter}) => {
-    const [{ data, loading, error }, reFect] =
-      useAxios({
-        url: "https://swapi.dev/api/people",
-        params: {
-          ...pagination,
-          ...filter,
-        },
-      });
+    const [{ data, loading, error }, reFect] = useAxios({
+      url: `${urlApiBase}/people`,
+      params: {
+        ...pagination,
+        ...filter,
+      },
+    });
 
     return {
         data, loading, error, reFect

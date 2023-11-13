@@ -1,21 +1,8 @@
 import axios from "axios";
+import { urlApiBase } from "../helpers/contanst";
 
-// request interceptor to add token to request headers
-axios.interceptors.request.use(
-  async (config) => {
-    const token = localStorage.getItem("token");
+axios.create({ url: urlApiBase });
 
-    if (token) {
-      config.headers = {
-        authorization: `Bearer ${token}`
-      };
-    }
-    return config;
-  },
-  (error) => Promise.reject(error)
-);
-
-// response interceptor intercepting 401 responses, refreshing token and retrying the request
 axios.interceptors.response.use(
   ({ data }) => {
     return {
