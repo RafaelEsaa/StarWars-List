@@ -1,8 +1,15 @@
-# React + Vite
+# Proyecto en React JS
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+Se usa:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1- axios-hooks (muy similar a react-query para manejar cache en la peticiones de la tabla)
+
+2- manejo de tabla con material-react-table
+
+3- interceptor con axios-hooks
+
+4- dos configuraciones de interceptor (services/apiConfig.js y services/apiConfigUseAxios)
+
+    - services/apiConfig.js: se usa con la configuracion useMakeAxios
+    - services/apiConfigUseAxios.js se usa la configuracion config y se llama en el App.jsx

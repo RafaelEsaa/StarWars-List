@@ -1,32 +1,33 @@
 import axios from "axios";
-import { urlApiBase } from '../helpers/contanst'
+import { makeUseAxios } from "axios-hooks";
+import { urlApiBase } from "../helpers/contanst";
 
 const StarWarsClient = axios.create({
   baseURL: urlApiBase,
 });
 
-StarWarsClient.interceptors.request.use(
-  (config) => {
-    return {
-      ...config,
-    };
-  },
-  (error) => {
-    Promise.reject(error);
-  },
-);
-
 StarWarsClient.interceptors.response.use(
   ({ data }) => {
-    return {
-      ...data,
-    };
+    const x = { data: { ...data, hola: "Rafael" } };
+    return x;
   },
   (error) => {
-    Promise.reject(error);
+    return Promise.reject(error);
   },
 );
 
-export {
-  StarWarsClient
-}
+StarWarsClient.interceptors.request.use(
+  (config) => {
+    config.headers.Authorization = "Rafael";
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  },
+);
+
+const customUseAxios = makeUseAxios({
+  axios: StarWarsClient,
+});
+
+export { StarWarsClient, customUseAxios };
